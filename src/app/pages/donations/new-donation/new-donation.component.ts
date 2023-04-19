@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PostService } from 'src/app/shared/services/post/post.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class NewDonationComponent {
   donationForm: FormGroup
   constructor(
     private _formBuilder: FormBuilder,
-    private _postService: PostService
+    private _postService: PostService,
+    private router: Router
   ) {
     this.donationForm = this._formBuilder.group({
       donation_for: [null, [Validators.required]],
@@ -31,7 +33,7 @@ export class NewDonationComponent {
         payload.end_date = payload.end_date.getFullYear() + "-" + (payload.end_date.getMonth() + 1)  + "-" + payload.end_date.getDate();
 
       this._postService.saveNewDonationPost(payload).subscribe((result) => {
-        
+        this.router.navigate(['donation/list']);
       })
     }
   }

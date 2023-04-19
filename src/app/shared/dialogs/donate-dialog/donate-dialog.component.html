@@ -1,5 +1,17 @@
 <h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+<div mat-dialog-content style="padding-top: 15px;">
+    <form class="pre-quote-form contact-details-form" [formGroup]="donateForm" id="donation-form" (ngSubmit)="onDonationFormSubmit();">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Amount</mat-label>
+            <input matInput placeholder="Enter Amount" formControlName="amount" autocomplete="nope">
+            <mat-error *ngIf="donateForm.controls['amount'].errors && donateForm.controls['amount'].errors['required']">
+                Sorry, we can’t proceed without this information.
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Close</button>
+    <button mat-button color="warn" type="submit" form="donation-form">Submit</button>
 </div>

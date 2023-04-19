@@ -19,7 +19,7 @@ export class DonationListComponent implements OnInit {
   constructor(
     private _postService: PostService,
     private store: Store<AppState>,
-    private router: Router,
+    private router: Router
   ) {
     this.donationList$ = of([]);
     this.pageViewType$ = this.store.select(pageViewType);
