@@ -1,0 +1,83 @@
+<div class="insurers-plan">
+
+    <div class="insurers-plan-name-mobile plan-label hide-g-xs">
+        Plan name:
+        <span>{{premium_plan_data.plan_name}}</span>
+    </div>
+
+    <div class="insurers-plan-top">
+        <div class="supp-holder">
+            <img [src]="premium_plan_data.insurer_images" alt="">
+        </div>
+
+        <!-- <div class="plan-label hide-l-sm">
+            {{premium_plan_data.insurer_name}}
+        </div> -->
+
+        <div class="plan-label hide-l-xs">
+            <span>Plan name</span>
+            {{premium_plan_data.plan_name}}
+        </div>
+
+        <!-- <div class="plan-label"> -->
+            <!-- <span>Sum insured</span> -->
+            <!-- ₹ {{premium_plan_data.sum_insured | priceFormat}} -->
+        <!-- </div> -->
+
+        <div class="plan-label hide-l-xs">
+            <span>
+                You Give
+            </span>
+            Rs. {{premium_plan_data.sum_insured | priceFormat}}
+            <span class="year">
+                in {{premium_plan_data.other_details?.payment_period}} Years
+            </span>
+        </div>
+
+        <div class="plan-label hide-l-xs">
+            <span>
+                You Get
+            </span>
+            Rs. {{premium_plan_data.other_details?.maturity_benefit | priceFormat}}
+            <span class="year">
+                in {{premium_plan_data.other_details?.maturity_after}} Years
+            </span>
+        </div>
+
+        <div>
+            <button mat-raised-button color="warn" class="insurers-plan-bottom" (click)="onBuyClick()" *ngIf="!loadingStatus">
+                <span class="hide-l-xs">Buy for</span>
+                Rs. {{premium_plan_data.total_premium | priceFormat}}
+            </button>
+            <button mat-raised-button color="warn" class="insurers-plan-bottom" style=" padding: 0 50px;" disabled *ngIf="loadingStatus">
+                <mat-spinner style="width: 25px; height: 25px;" *ngIf="deepLoadingStatus"></mat-spinner>
+            </button>
+        </div>
+    </div>
+
+    <div class="hide-g-xs">
+        <div class="insurers-plan-middle">
+            <div class="plan-label">
+                <span>
+                    You Give
+                </span>
+                Rs. {{premium_plan_data.sum_insured | priceFormat}}
+                <span class="year">
+                    in {{premium_plan_data.other_details?.payment_period}} Years
+                </span>
+            </div>
+
+            <div class="plan-label">
+                <span>
+                    You Get
+                </span>
+                Rs. {{premium_plan_data.other_details?.maturity_benefit | priceFormat}}
+                <span class="year">
+                    in {{premium_plan_data.other_details?.maturity_after}} Years
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="insurers-plan-bottom"></div> -->
+</div>

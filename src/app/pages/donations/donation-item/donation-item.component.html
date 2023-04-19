@@ -1,0 +1,20 @@
+<div [class]="{'list-item': (pageViewType$ | async) == 'list', 'grid-item': (pageViewType$ | async) == 'grid'}">
+    <div class="item-body">
+        <div class="label">
+            <span>Donation For</span> 
+            {{donation.donation_for}}
+        </div>
+        <div class="label">
+            <span>Request by</span> 
+            {{donation.user_details.first_name}} {{donation.user_details.last_name}} 
+        </div>
+        <div class="label">
+            <span>Amount</span> 
+            {{donation.amount}}
+        </div>
+        <div class="label hide-l-xs">
+            <span>Address</span> 
+            {{donation.country}}, {{donation.state}}
+        </div>
+    </div>
+</div>

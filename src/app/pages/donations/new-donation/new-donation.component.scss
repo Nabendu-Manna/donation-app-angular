@@ -1,0 +1,21 @@
+.form-container {
+    border-radius: 5px;
+    background: #fff;
+    color: #000000;
+    margin: 26px 0;
+    padding: 30px;
+    box-shadow: 0px 0px 10px 0px rgba(204, 204, 204, 0.2784313725);
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        mat-form-field {
+            width: 45%;
+        }
+        button {
+            width: 50%;
+        }
+    }
+}

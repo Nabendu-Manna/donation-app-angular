@@ -1,0 +1,312 @@
+.body-background {
+  background-image: url("/assets/images/background.svg");
+  background-size: contain;
+  background-position: center;
+  min-height: 100vh;
+}
+
+::ng-deep .main-form {
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+}
+
+.mob-txt {
+  padding-top: 9px;
+  padding-left: 0;
+  padding-bottom: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  text-align: center;
+  color: #4b5565;
+}
+
+.form-container {
+  padding: 20px 0;
+  margin: auto;
+  width: min(100% - 1em, 30em);
+}
+
+.form-box {
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 26px;
+  padding: 35px;
+  // box-shadow: 0px 2px 4px 0px #ccc;
+  box-shadow: 0px 0px 10px 0px #cccccc47;
+}
+
+@media (max-width: 960px) {
+  .form-box {
+    padding: 10px;
+  }
+}
+
+.form_title {
+  font-size: 20px;
+  padding: 15px 45px 15px 10px;
+  width: 90%;
+  flex: 1 1 100%;
+  text-align: center;
+}
+
+.form_footer {
+  font-size: 13px;
+  line-height: 1.42;
+  margin: 0 0 20px 0;
+  padding: 0 30px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.mat-mdc-radio-button~.mat-mdc-radio-button {
+  // margin-left: 16px;
+}
+
+/**
+* Custom Radio Button
+* By Nabendu
+*/
+::ng-deep .thunder-radio-group {
+  align-items: stretch;
+  margin-bottom: 15px;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+
+  mat-radio-button {
+    width: 100%;
+    border-radius: 8px;
+    // padding: 16px;
+    border: 1px solid #5e6c84;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .mdc-form-field {
+      width: 100%;
+      justify-content: center;
+      cursor: pointer;
+
+      .mdc-radio {
+        display: none;
+      }
+
+      label {
+        cursor: pointer;
+        width: 100%;
+        padding: 16px 7px;
+      }
+      
+      @media (max-width: 960px) {
+        label {
+          padding: 11px 7px;
+        }
+      }
+    }
+
+    .thunder-radio-button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      .thunder-radio-button-text {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    .mat-radio-label-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .label-icon {
+      margin-right: 20px;
+      height: 30px;
+    }
+
+    .label-text {
+      // font-size: 16px;
+      font-size: 20px;
+      color: #3b424e;
+    }
+    
+    @media (max-width: 960px) {
+      .label-text {
+        font-size: 12px;
+      }
+    }
+
+    .sub-text {
+      white-space: break-spaces;
+      line-height: 1;
+      color: #6b778c;
+      font-size: 12px;
+    }
+  }
+
+  mat-radio-button.active {
+    border: 2.5px solid #03b887;
+    background-color: #03b887;
+
+    .label-text {
+      color: #fff;
+    }
+
+    .sub-text {
+      color: #d6dde9;
+    }
+  }
+
+  .space {
+    width: 35px;
+  }
+}
+
+
+.item-box {
+  background-color: #f5f8fd;
+  padding: 15px 20px;
+  margin: 10px 30px;
+  border-radius: 9px;
+
+  .prequote-instruction {
+    font-size: 11px;
+    text-indent: 0px;
+    margin: 0px 10px 10px 10px;
+    color: #4c596f;
+    text-align: justify;
+  }
+
+  .form-error {
+    margin: 0;
+  }
+}
+
+.form-error {
+  margin: 10px 30px;
+}
+
+.input-f-w {
+  width: 100%
+}
+
+.form-box {
+  // flex: 1 1 100%;
+  box-sizing: border-box;
+  max-height: 100%;
+  // flex-direction: row;
+  // display: flex;
+
+  // .img-box {
+  //   flex: 1 1 100%;
+  //   box-sizing: border-box;
+  //   max-width: 60%;
+  // }
+
+  // @media (min-width: 960px) {
+  //   .quote-area {
+  //     flex: 1 1 100%;
+  //     box-sizing: border-box;
+  //     max-width: 40%;
+  //   }
+  // }
+
+  // @media (max-width: 960px) {
+  //   .quote-area {
+  //     flex: 1 1 100%;
+  //     box-sizing: border-box;
+  //     max-width: 100%;
+  //   }
+  // }
+
+  .pre-quote-form {
+    box-sizing: border-box;
+    display: flex;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .form-header {
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .gender-error {
+      background-color: #f74b32;
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 0 5px;
+      width: fit-content;
+      margin-top: -15px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+::ng-deep .form-header{
+  .mdc-button {
+    min-width: unset;
+    mat-icon {
+      margin: 0;
+      padding-left: 7px;
+    }
+  }
+}
+
+.pre-quote-form {
+  .submit {
+    width: 100%;
+  }
+}
+
+::ng-deep .pre-quote-form {
+  mat-form-field {
+    .mat-mdc-form-field-error-wrapper {
+      z-index: 2;
+      padding: 0;
+      mat-error {
+        background-color: #f74b32;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 0 5px;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+::ng-deep .pre-quote-form.contact-details-form {
+  mat-form-field {
+    // flex: 1 1 50%;
+    width: 100%;
+  }
+}
+
+::ng-deep .pre-quote-form.personal-details-form {
+  mat-form-field {
+    // flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+.main {
+  min-height: 100%;
+}

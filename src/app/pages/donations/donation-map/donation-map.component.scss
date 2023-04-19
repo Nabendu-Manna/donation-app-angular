@@ -1,0 +1,38 @@
+::ng-deep .map-container {
+    max-height: -webkit-fill-available !important;
+    width: 100% !important;
+}
+
+map-info-window {
+    .header {
+        text-align: center;
+
+        span {
+            color: #253858;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    .body {
+        text-align: center;
+
+        p {
+            display: block;
+            font-size: 12px;
+            opacity: 0.5;
+            font-weight: normal;
+        }
+
+        .amount {
+            color: #253858;
+            font-size: 16px;
+            font-weight: 500;
+
+            span {
+                font-size: 16px;
+                opacity: 0.5;
+            }
+        }
+    }
+}

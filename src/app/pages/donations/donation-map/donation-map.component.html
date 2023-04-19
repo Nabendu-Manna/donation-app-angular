@@ -1,0 +1,28 @@
+<app-common-header></app-common-header>
+
+<div class="container">
+    <google-map class="map" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+        (mapMousemove)="move($event)" (mapClick)="addMarker($event)">
+        <map-marker #marker="mapMarker" *ngFor="let markerPosition of markerPositionList"
+            [position]="markerPosition.markerPosition" [options]="markerOptions"
+            (mapClick)="openInfoWindow(marker, markerPosition.id)"></map-marker>
+        <map-info-window>
+            <div *ngIf="selectedDonation">
+                <div class="header">
+                    <span>{{selectedDonation.user_details.first_name}}</span>
+                </div>
+                <div class="body">
+                    <p>{{selectedDonation.donation_for}}</p>
+                    <div class="amount">
+                        <span>Amount</span>
+                        {{selectedDonation.amount}}
+                    </div>
+                </div>
+            </div>
+        </map-info-window>
+    </google-map>
+
+    <div>Latitude: {{display?.lat}}</div>
+    <div>Longitude: {{display?.lng}}</div>
+</div>
+<app-common-footer></app-common-footer>

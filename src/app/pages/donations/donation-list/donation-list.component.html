@@ -1,0 +1,26 @@
+<app-common-header></app-common-header>
+
+<div class="container">
+    <div class="list-box">
+        <div class="list-header">
+            <span> All Donation Request </span> 
+
+            
+
+            <div class="action">
+                <mat-icon *ngIf="(pageViewType$ | async) == 'grid'" class="material-symbols-outlined" (click)="onClickLayout('list')">view_list</mat-icon>
+                <mat-icon *ngIf="(pageViewType$ | async) == 'list'" color="primary" class="material-symbols-outlined" (click)="onClickLayout('list')">view_list</mat-icon>
+
+                <mat-icon *ngIf="(pageViewType$ | async) == 'list'" class="material-symbols-outlined" (click)="onClickLayout('grid')">grid_view</mat-icon>
+                <mat-icon *ngIf="(pageViewType$ | async) == 'grid'" color="primary" class="material-symbols-outlined" (click)="onClickLayout('grid')">grid_view</mat-icon>
+
+                <button mat-raised-button color="accent" (click)="onClickNew()">Request For Donation</button>
+            </div>
+        </div>
+        <div class="list-body" [ngClass]="{'list-view': (pageViewType$ | async) == 'list', 'grid-view':  (pageViewType$ | async) =='grid' }">
+            <app-donation-item *ngFor="let donationItem of donationList$ | async" [donation]="donationItem"></app-donation-item>
+        </div>
+    </div>
+</div>
+
+<app-common-footer></app-common-footer>

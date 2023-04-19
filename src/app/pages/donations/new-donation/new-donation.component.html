@@ -1,0 +1,75 @@
+<app-common-header></app-common-header>
+
+<div class="container">
+    <div class="form-container">
+
+        <form class="pre-quote-form contact-details-form" [formGroup]="donationForm" (ngSubmit)="onDonationFormSubmit()">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Donation For</mat-label>
+                <input matInput placeholder="Donation For" formControlName="donation_for" autocomplete="nope">
+                <mat-error
+                    *ngIf="donationForm.controls['donation_for'].errors && donationForm.controls['donation_for'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+                <mat-error
+                    *ngIf="donationForm.controls['donation_for'].errors && donationForm.controls['donation_for'].errors['pattern']">
+                    Oops, that doesn't look like a valid Name!
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input matInput type="amount" placeholder="Amount" formControlName="amount" autocomplete="nope">
+                <mat-error
+                    *ngIf="donationForm.controls['amount'].errors && donationForm.controls['amount'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput type="text" placeholder="Country" formControlName="country" autocomplete="nope">
+                <mat-error
+                    *ngIf="donationForm.controls['country'].errors && donationForm.controls['country'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput type="text" placeholder="State" formControlName="state" autocomplete="nope">
+                <mat-error
+                    *ngIf="donationForm.controls['state'].errors && donationForm.controls['state'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" placeholder="Address" formControlName="address" autocomplete="nope">
+                <mat-error
+                    *ngIf="donationForm.controls['address'].errors && donationForm.controls['address'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>End Date</mat-label>
+                <input matInput type="text" placeholder="End Date" formControlName="end_date" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error
+                    *ngIf="donationForm.controls['end_date'].errors && donationForm.controls['end_date'].errors['required']">
+                    Sorry, we can’t proceed without this information.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="accent" type="submit" class="submit">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+<app-common-footer></app-common-footer>

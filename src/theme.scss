@@ -1,0 +1,114 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$fire-insurance-blue-palette: (
+    50 : #e1ebf5,
+    100 : #b4cee5,
+    200 : #82add4,
+    300 : #508cc3,
+    400 : #2b74b6,
+    500 : #055ba9,
+    600 : #0453a2,
+    700 : #044998,
+    800 : #03408f,
+    900 : #012f7e,
+    A100 : #acc3ff,
+    A200 : #799fff,
+    A400 : #467bff,
+    A700 : #2c68ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$fire-insurance-green-palette: (
+    50 : #e3f8f2,
+    100 : #baecdf,
+    200 : #8ce0ca,
+    300 : #5ed4b4,
+    400 : #3ccaa4,
+    500 : #19c194,
+    600 : #16bb8c,
+    700 : #12b381,
+    800 : #0eab77,
+    900 : #089e65,
+    A100 : #caffe9,
+    A200 : #97ffd3,
+    A400 : #64ffbd,
+    A700 : #4bffb3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$fire-insurance-red-palette: (
+    50 : #ffeae6,
+    100 : #feccc1,
+    200 : #fdaa97,
+    300 : #fc876d,
+    400 : #fc6e4e,
+    500 : #fb542f,
+    600 : #fa4d2a,
+    700 : #fa4323,
+    800 : #f93a1d,
+    900 : #f82912,
+    A100 : #ffffff,
+    A200 : #fff3f2,
+    A400 : #ffc4bf,
+    A700 : #ffada6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$fire-insurance-primary: mat.define-palette($fire-insurance-blue-palette, 500);
+$fire-insurance-secondary: mat.define-palette($fire-insurance-green-palette, 500);
+// $fire-insurance-accent: mat.define-palette($fire-insurance-black-palette, 300, 100, 500);
+$fire-insurance-warn: mat.define-palette($fire-insurance-red-palette, 500);
+$fire-insurance-theme: mat.define-light-theme((
+  color: (
+    primary: $fire-insurance-primary,
+    accent: $fire-insurance-secondary, // accent: $fire-insurance-accent,
+    warn: $fire-insurance-warn,
+  )
+));
+@include mat.all-component-themes($fire-insurance-theme);
