@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
 import { CommonMaterialModule } from "../../modules/common-material/common-material.module";
-import { EditPreQuoteComponent } from "./edit-pre-quote.component";
+import { DonateDialogComponent } from "./donate-dialogs.component";
 
 @NgModule({
     declarations: [
-        EditPreQuoteComponent
+        DonateDialogComponent
     ],
     imports: [
         CommonMaterialModule
     ],
     exports: [
-        EditPreQuoteComponent
+        DonateDialogComponent
     ]
 })
-export class EditPreQuoteModule { }
+export class DonateDialogsModule { }
