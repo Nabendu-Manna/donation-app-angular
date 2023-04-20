@@ -13,3 +13,10 @@ export interface DonationPost {
     user: number, 
     user_details: UserDetails
 }
+
+export interface DonationPostSearch {
+    count: number,
+    next: string | null,
+    previous: string | null,
+    results: DonationPost[]
+}

@@ -38,7 +38,7 @@ export class DonationMapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.donationListSubscription$ = this._postService.getDonationPostList().subscribe((donationList: DonationPost[]) => {
+    this.donationListSubscription$ = this._postService.getAllDonationPostList().subscribe((donationList: DonationPost[]) => {
       this.donationList = donationList;
       donationList.forEach((donation: DonationPost) => {
         this.markerPositionList.push({
