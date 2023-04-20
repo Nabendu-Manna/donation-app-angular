@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://uatnew.gibl.in/php-services/investment-plans-api/service.php'
+    apiUrl: 'http://127.0.0.1:8000/'
 };
