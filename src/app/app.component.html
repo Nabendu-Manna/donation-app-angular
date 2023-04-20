@@ -1,3 +1,26 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div class="side-menu">
+            <button mat-button color="primary" (click)="goToHome()"> Home </button>
 
+            <button mat-button color="primary" (click)="goToDonationRequestList()"> Donation Request List </button>
+            <button mat-button color="primary" (click)="goToDonationRequestMap()"> Donation Request (Map) </button>
+            <button mat-button color="primary" (click)="goToNewDonation()"> New Donation </button>
 
-<router-outlet></router-outlet>
+            <button mat-button color="primary" (click)="goToSetting()"> Home page Setting </button>
+
+            <button mat-button color="primary" (click)="goToLogIn()"> Login </button>
+            <button mat-button color="primary" (click)="goToLogOut()"> Logout </button>
+            <button mat-button color="primary" (click)="goToRegister()"> Register </button>
+        </div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+
+        <button mat-icon-button color="warn" aria-label="menu" class="menu-btn" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

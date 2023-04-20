@@ -1,0 +1,15 @@
+.menu-btn {
+    position: absolute;
+    top: 8px;
+}
+
+.side-menu {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    padding: 10px 5px;
+}

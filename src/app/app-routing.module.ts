@@ -18,6 +18,9 @@ const routes: Routes = [
   }, {
     path: 'setting',
     loadChildren: () => import('./pages/setting/setting.module').then(m => m.SettingModule)
+  }, { 
+    path: '', 
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
   }, {
     path: "**",
     component: PageNotFoundComponent

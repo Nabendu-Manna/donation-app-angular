@@ -28,7 +28,7 @@ export class AuthService {
   register(payload: RegisterPayload): Observable<LoginResponse> {
     let queryParams = new HttpParams({});
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.post<LoginResponse>(`${environment.apiUrl}account/register/`, payload, { params: queryParams, headers: headers }).pipe(tap(registerResponse => {
+    return this._httpClient.post<LoginResponse>(`${environment.apiUrl}/account/register/`, payload, { params: queryParams, headers: headers }).pipe(tap(registerResponse => {
       this._localStorage.setItem("auth_details", registerResponse).subscribe(() => {})
     }));
   }
@@ -36,6 +36,6 @@ export class AuthService {
   forgotPassword(payload: ForgotPasswordPayload): Observable<any> {
     let queryParams = new HttpParams({});
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.post<any>(`${environment.apiUrl}forgot-password/`, payload, { params: queryParams, headers: headers });
+    return this._httpClient.post<any>(`${environment.apiUrl}/forgot-password/`, payload, { params: queryParams, headers: headers });
   }
 }

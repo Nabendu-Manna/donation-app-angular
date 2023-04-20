@@ -16,6 +16,9 @@ import { appReducer } from './core/store/app.reducer';
 import { environment } from 'src/environments/environment';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     BrowserAnimationsModule,
     HttpClientModule,
     OnlineStatusModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
     EffectsModule.forRoot([UtilityEffects ]),
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })

@@ -1,0 +1,19 @@
+.home-page {
+    margin: 15px 0;
+
+    img {
+        width: 100%;
+        max-height: 300px;
+    }
+}
+
+::ng-deep .home-page {
+    .mat-mdc-card-header {
+        display: flex;
+        justify-content: center;
+        padding: 16px;
+        font-size: 25px;
+        font-weight: bold;
+        letter-spacing: 4px;
+    }
+}

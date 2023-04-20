@@ -1,0 +1,19 @@
+<app-common-header></app-common-header>
+
+<div class="container" *ngIf="homePageData">
+
+    <mat-card class="example-card home-page">
+        <mat-card-header>
+            <mat-card-title>{{homePageData.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="homePageData.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                {{homePageData.body_text}}
+            </p>
+        </mat-card-content>
+    </mat-card>
+
+</div>
+
+<app-common-footer></app-common-footer>

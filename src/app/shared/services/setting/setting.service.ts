@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { LoginResponse } from '../../models/auth.model';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,6 +20,14 @@ export class SettingService {
     })
   }
 
+  getHomePageLayout(): Observable<any> {
+    return this._httpClient.get<any>(`${environment.apiUrl}/setting/home-page/`).pipe(map((data) => {
+      return {
+        ...data,
+        image: `${environment.apiUrl}${data.image}`
+      }
+    }))
+  }
 
   saveNewDonationPost(payload: any, imageFile: any): Observable<any> {
     let queryParams = new HttpParams({});
@@ -31,7 +39,7 @@ export class SettingService {
       formData.append("image", imageFile, imageFile.name);
 
       let headers = new HttpHeaders({ 'Authorization': `Token ${this.userDetails.token}` });
-      return this._httpClient.patch<any>(`${environment.apiUrl}setting/home-page/`, formData, { params: queryParams, headers: headers });
+      return this._httpClient.patch<any>(`${environment.apiUrl}/setting/home-page/`, formData, { params: queryParams, headers: headers });
     } else {
       return of({
         error: "Invalid Data"
