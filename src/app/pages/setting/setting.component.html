@@ -1,3 +1,4 @@
+<app-common-header></app-common-header>
 
 <div class="body-background">
 
@@ -6,39 +7,42 @@
 
       <div class="form-box">
         <div class="wrap-contact100 radio-invisible quote-area" style="border:2; margin:0;">
-          <form class="pre-quote-form contact-details-form" [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit();">
+          <form class="pre-quote-form contact-details-form" [formGroup]="settingForm" (ngSubmit)="onSettingFormSubmit();">
 
             <div class="form-header">
               <button mat-button (click)="onBackBtnClick()" type="button">
                 <mat-icon aria-hidden="false" aria-label="Example home icon">arrow_back_ios</mat-icon>
               </button>
-              <span class="form_title">Login to Donation App</span>
+              <span class="form_title">Update Home Page Layout</span>
             </div>
 
             <mat-form-field appearance="outline">
-              <mat-label>Email ID</mat-label>
-              <input matInput type="email" placeholder="Your Email ID" formControlName="email" autocomplete="nope">
+              <mat-label>Title</mat-label>
+              <input matInput type="text" placeholder="Home page title" formControlName="title" autocomplete="nope">
               <!-- <mat-hint>Hint</mat-hint> -->
-              <mat-error *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['required']">
+              <mat-error
+                *ngIf="settingForm.controls['title'].errors && settingForm.controls['title'].errors['required']">
                 Sorry, we can’t proceed without this information.
-              </mat-error>
-              <mat-error *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['pattern']">
-                Oops, that doesn't look like a valid email!
               </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-              <mat-label>Password</mat-label>
-              <input matInput type="password" placeholder="Your Password" formControlName="password" autocomplete="nope">
-              <mat-error *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">
+              <mat-label>Body</mat-label>
+              <textarea matInput type="text" placeholder="Home page body" formControlName="body_text"
+                autocomplete="nope"></textarea>
+              <!-- <mat-hint>Hint</mat-hint> -->
+              <mat-error
+                *ngIf="settingForm.controls['body_text'].errors && settingForm.controls['body_text'].errors['required']">
                 Sorry, we can’t proceed without this information.
-              </mat-error>
-              <mat-error *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['pattern']">
-                Oops, that doesn't look like a valid Password!
               </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button color="accent" type="submit" class="submit">Login</button>
+            <div style="padding-bottom: 20px;">
+              <label>Home page image</label>
+              <input type="file" placeholder="Home page image" autocomplete="nope" formControlName="image" (change)="onChangeImage($event)">
+            </div>
+
+            <button mat-raised-button color="accent" type="submit" class="submit">Update</button>
           </form>
         </div>
 
@@ -47,3 +51,5 @@
   </div>
 
 </div>
+
+<app-common-footer></app-common-footer>

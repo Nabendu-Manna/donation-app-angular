@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public onRegisterFormSubmit(): void {
     if (this.registerForm.valid) {
       this._authService.register(this.registerForm.value).subscribe((registerResponse) => {
-        // console.log(registerResponse)
+        this.router.navigate(['/'])
       })
     }
   }

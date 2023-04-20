@@ -20,7 +20,9 @@ import { OnlineStatusModule } from 'ngx-online-status';
     SettingRoutingModule,
     OnlineStatusModule,
     CommonMaterialModule,
-    CommonFormsModule
+    CommonFormsModule,
+    HeaderModule,
+    FooterModule
   ],
 })
 export class SettingModule { }

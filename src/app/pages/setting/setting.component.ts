@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { OnlineStatusService, OnlineStatusType } from "ngx-online-status";
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { SettingService } from 'src/app/shared/services/setting/setting.service';
 
 @Component({
   selector: 'app-setting',
@@ -15,24 +16,26 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class SettingComponent implements OnInit, OnDestroy {
 
-  loginForm: FormGroup
+  settingForm: FormGroup
   status: OnlineStatusType = this.onlineStatusService.getStatus() // get initial status
-  loginBtnLoader: boolean
+  settingBtnLoader: boolean
+  imageFile: any = null
 
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private _authService: AuthService,
+    private _settingService: SettingService,
     private store: Store<AppState>,
     public dialog: MatDialog,
     private onlineStatusService: OnlineStatusService
   ) {
-    this.loginBtnLoader = false
+    this.settingBtnLoader = false
 
-    this.loginForm = this._formBuilder.group({
-      email: [null, [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/)]],
-      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(18)]]
+    this.settingForm = this._formBuilder.group({
+      title: [null, [Validators.required]],
+      body_text: [null, [Validators.required]],
+      image: [null, [Validators.required]]
     });
 
   }
@@ -58,10 +61,14 @@ export class SettingComponent implements OnInit, OnDestroy {
     this.router.navigate(['/'])
   }
 
-  public onLoginFormSubmit(): void {
-    if (this.loginForm.valid) {
-      this._authService.login(this.loginForm.value).subscribe((loginResponse) => {
-        // console.log(loginResponse)
+  onChangeImage(event: any) {
+    this.imageFile = event.target.files[0]
+  }
+
+  public onSettingFormSubmit(): void {
+    if (this.settingForm.valid && this.imageFile) {
+      this._settingService.saveNewDonationPost(this.settingForm.value, this.imageFile).subscribe((loginResponse) => {
+        this.router.navigate(['/'])
       })
     }
   }

@@ -16,6 +16,9 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
   }, {
+    path: 'setting',
+    loadChildren: () => import('./pages/setting/setting.module').then(m => m.SettingModule)
+  }, {
     path: "**",
     component: PageNotFoundComponent
   }
