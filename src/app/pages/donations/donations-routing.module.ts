@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DonationListComponent } from './donation-list/donation-list.component';
 import { NewDonationComponent } from './new-donation/new-donation.component';
 import { DonationMapComponent } from './donation-map/donation-map.component';
+import { IsLoginGuard } from 'src/app/guard/is-login.guard';
 
 const routes: Routes = [
   { 
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: DonationListComponent 
   }, { 
     path: 'new', 
-    component: NewDonationComponent 
+    component: NewDonationComponent ,
+    canActivate: [IsLoginGuard]
   }, { 
     path: 'map', 
     component: DonationMapComponent 

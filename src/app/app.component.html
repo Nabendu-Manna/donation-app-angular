@@ -12,6 +12,7 @@
             <button mat-button color="primary" (click)="goToLogIn()" *ngIf="!(loginStatus$ | async)"> Login </button>
             <button mat-button color="primary" (click)="goToLogOut()" *ngIf="(loginStatus$ | async)"> Logout </button>
             <button mat-button color="primary" (click)="goToRegister()" *ngIf="!(loginStatus$ | async)"> Register </button>
+            <button mat-button color="primary" (click)="goToForgotPassword()" *ngIf="!(loginStatus$ | async)"> Forgot Password </button>
         </div>
     </mat-drawer>
 

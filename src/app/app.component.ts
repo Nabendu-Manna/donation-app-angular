@@ -52,5 +52,8 @@ export class AppComponent {
   goToRegister() {
     this.router.navigate(['register'])
   }
+  goToForgotPassword() {
+    this.router.navigate(['forgot-password'])
+  }
 
 }
