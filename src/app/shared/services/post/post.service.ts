@@ -30,7 +30,7 @@ export class PostService {
     let queryParams = new HttpParams({});
     if(this.userDetails && this.userDetails.token){
       let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.userDetails.token}` });
-      return this._httpClient.post<any>(`${environment.apiUrl}donation/new`, payload, { params: queryParams, headers: headers });
+      return this._httpClient.post<any>(`${environment.apiUrl}donation/new/`, payload, { params: queryParams, headers: headers });
     } else {
       return of({
         error: "Invalid Data"
@@ -42,7 +42,7 @@ export class PostService {
     let queryParams = new HttpParams({});
     if(this.userDetails && this.userDetails.token){
       let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.userDetails.token}` });
-      return this._httpClient.post<any>(`${environment.apiUrl}donation/donate`, payload, { params: queryParams, headers: headers });
+      return this._httpClient.post<any>(`${environment.apiUrl}donation/donate/`, payload, { params: queryParams, headers: headers });
     } else {
       return of({
         error: "Invalid Data"

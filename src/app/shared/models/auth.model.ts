@@ -27,3 +27,12 @@ export interface UserDetails {
     modified_at: string, 
     deleted_at: string
 }
+
+export interface ForgotPasswordPayload {
+    email: string
+}
+
+export interface ForgotPasswordResponse {
+    user_id: number
+    token: string
+}

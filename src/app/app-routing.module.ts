@@ -13,6 +13,9 @@ const routes: Routes = [
     path: 'donation',
     loadChildren: () => import('./pages/donations/donations.module').then(m => m.DonationsModule)
   }, {
+    path: 'forgot-password',
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)
+  }, {
     path: "**",
     component: PageNotFoundComponent
   }
