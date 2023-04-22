@@ -37,7 +37,9 @@ export class AuthService {
 
   isUserValid(): Observable<boolean> {
     if (this.userDetails && this.userDetails.token) {
-      return this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/user/valid`).pipe(map(data => {
+      let queryParams = new HttpParams({})
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.userDetails.token}` })
+      return this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/user/valid`, { params: queryParams, headers: headers }).pipe(map(data => {
         this.loginStatusSubject.next(data.valid)
         return data.valid
       }))
@@ -49,7 +51,9 @@ export class AuthService {
   }
   isAdminValid(): Observable<boolean> {
     if (this.userDetails && this.userDetails.token) {
-      return this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/admin/valid`).pipe(map(data => {
+      let queryParams = new HttpParams({})
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.userDetails.token}` })
+      return this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/admin/valid`,  { params: queryParams, headers: headers }).pipe(map(data => {
         this.adminStatusSubject.next(data.valid)
         return data.valid
       }))

@@ -7,7 +7,7 @@
             <button mat-button color="primary" (click)="goToDonationRequestMap()"> Donation Request (Map) </button>
             <button mat-button color="primary" (click)="goToNewDonation()" *ngIf="(loginStatus$ | async)"> New Donation </button>
 
-            <button mat-button color="primary" (click)="goToSetting()"  *ngIf="(adminStatus$ | async)"> Home page Setting </button>
+            <button mat-button color="primary" (click)="goToSetting()" *ngIf="(adminStatus$ | async)"> Home page Setting </button>
 
             <button mat-button color="primary" (click)="goToLogIn()" *ngIf="!(loginStatus$ | async)"> Login </button>
             <button mat-button color="primary" (click)="goToLogOut()" *ngIf="(loginStatus$ | async)"> Logout </button>
