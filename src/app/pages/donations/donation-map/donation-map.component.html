@@ -18,7 +18,7 @@
                         {{selectedDonation.amount}}
                     </div>
                 </div>
-                <button mat-raised-button color="warn" (click)="onClickDonate(selectedDonation)">Donate</button>
+                <button mat-raised-button color="warn" (click)="onClickDonate(selectedDonation)" *ngIf="(loginStatus$ | async)">Donate</button>
             </div>
         </map-info-window>
     </google-map>

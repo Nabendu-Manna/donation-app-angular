@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/core/store/app.state';
 import { DonationPost, DonationPostSearch } from 'src/app/shared/models/donation.model';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PostService } from 'src/app/shared/services/post/post.service';
 import { changePageViewType } from 'src/app/shared/store/shared/shared.action';
 import { pageViewType } from 'src/app/shared/store/shared/shared.selector';
@@ -16,16 +17,19 @@ import { pageViewType } from 'src/app/shared/store/shared/shared.selector';
 })
 export class DonationListComponent implements OnInit {
   searchForm: FormGroup
-  // donationList$: Observable<DonationPostSearch>;
-  donationList: DonationPostSearch;
-  pageViewType$: Observable<string>;
-  page: number = 1;
+  loginStatus$: Observable<boolean>
+  // donationList$: Observable<DonationPostSearch>
+  donationList: DonationPostSearch
+  pageViewType$: Observable<string>
+  page: number = 1
   constructor(
     private _formBuilder: FormBuilder,
     private _postService: PostService,
+    private _authService: AuthService,
     private store: Store<AppState>,
     private router: Router
   ) {
+    this.loginStatus$ = this._authService.loginStatus
 
     this.searchForm = this._formBuilder.group({
       search: [null],

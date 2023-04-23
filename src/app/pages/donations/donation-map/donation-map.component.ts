@@ -5,6 +5,7 @@ import { Subscription, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { DonateDialogComponent } from 'src/app/shared/dialogs/donate-dialog/donate-dialog.component';
 import { DonationPost } from 'src/app/shared/models/donation.model';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PostService } from 'src/app/shared/services/post/post.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class DonationMapComponent implements OnInit {
   donationList: DonationPost[];
   donationListSubscription$!: Subscription;
   selectedDonation!: DonationPost;
+  loginStatus$: Observable<boolean>;
 
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
   display: any;
@@ -35,8 +37,10 @@ export class DonationMapComponent implements OnInit {
 
   constructor(
     private _postService: PostService,
+    private _authService: AuthService,
     public _dialog: MatDialog
   ) {
+    this.loginStatus$ = this._authService.loginStatus
     this.donationList = [];
   }
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store/app.state';
 import { DonateDialogComponent } from 'src/app/shared/dialogs/donate-dialog/donate-dialog.component';
 import { DonationPost } from 'src/app/shared/models/donation.model';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { PostService } from 'src/app/shared/services/post/post.service';
 import { pageViewType } from 'src/app/shared/store/shared/shared.selector';
 
@@ -14,14 +15,17 @@ import { pageViewType } from 'src/app/shared/store/shared/shared.selector';
   styleUrls: ['./donation-item.component.scss']
 })
 export class DonationItemComponent implements OnInit{
-  @Input() donation!: DonationPost;
-  pageViewType$: Observable<string>;
+  @Input() donation!: DonationPost
+  pageViewType$: Observable<string>
+  loginStatus$: Observable<boolean>
   constructor(
     private store: Store<AppState>,
     private _postService: PostService,
+    private _authService: AuthService,
     public _dialog: MatDialog
   ){
-    this.pageViewType$ = this.store.select(pageViewType);
+    this.loginStatus$ = this._authService.loginStatus
+    this.pageViewType$ = this.store.select(pageViewType)
   }
 
   ngOnInit(): void {

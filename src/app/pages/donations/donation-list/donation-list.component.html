@@ -23,7 +23,7 @@
                 <mat-icon *ngIf="(pageViewType$ | async) == 'grid'" color="primary" class="material-symbols-outlined"
                     (click)="onClickLayout('grid')">grid_view</mat-icon>
 
-                <button mat-raised-button color="accent" (click)="onClickNew()">Request For Donation</button>
+                <button mat-raised-button color="accent" (click)="onClickNew()" *ngIf="(loginStatus$ | async)">Request For Donation</button>
             </div>
         </div>
         <div class="list-body"

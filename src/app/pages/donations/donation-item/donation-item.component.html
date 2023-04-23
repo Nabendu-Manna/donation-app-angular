@@ -16,7 +16,7 @@
             <span>Address</span> 
             {{donation.country}}, {{donation.state}}
         </div>
-        <button mat-raised-button color="warn" (click)="onClickDonate()">Donate</button>
+        <button mat-raised-button color="warn" (click)="onClickDonate()" *ngIf="(loginStatus$ | async)">Donate</button>
         <mat-progress-bar mode="determinate" [value]="donation.progress" style="
         position: absolute;
         bottom: 0;
