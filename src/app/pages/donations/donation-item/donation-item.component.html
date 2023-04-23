@@ -17,5 +17,10 @@
             {{donation.country}}, {{donation.state}}
         </div>
         <button mat-raised-button color="warn" (click)="onClickDonate()">Donate</button>
+        <mat-progress-bar mode="determinate" [value]="donation.progress" style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;"></mat-progress-bar>
     </div>
 </div>

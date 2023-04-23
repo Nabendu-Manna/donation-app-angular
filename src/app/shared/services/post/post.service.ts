@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DonationPost, DonationPostSearch } from '../../models/donation.model';
+import { DonationPost, DonationPostResponse, DonationPostSearch, DonationPostSearchApiResponse } from '../../models/donation.model';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { LoginResponse } from '../../models/auth.model';
 
@@ -19,6 +19,10 @@ export class PostService {
       if (authDetails)
         this.userDetails = authDetails
     })
+  }
+
+  receivedAmountPercentage(target: number, received: number): number {
+    return (received / target) * 100
   }
 
   getDonationPostList(filter: { page: number, limit: number, search: string | null }): Observable<DonationPostSearch> {
@@ -40,20 +44,37 @@ export class PostService {
       });
     }
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.get<DonationPostSearch>(`${environment.apiUrl}/donation/list/`, { params: queryParams, headers: headers })
+    return this._httpClient.get<DonationPostSearchApiResponse>(`${environment.apiUrl}/donation/list/`, { params: queryParams, headers: headers }).pipe(map((postListData: DonationPostSearchApiResponse) => {
+      let newPostList: DonationPost[] = []
+      postListData.results.forEach(post => {
+        let endDate = new Date(post.end_date)
+        let toDay = new Date()
+        let diff = endDate.getTime() - toDay.getTime()
+        if (diff > -1)
+          newPostList.push({
+            ...post,
+            progress: this.receivedAmountPercentage(post.amount, post.received_amount)
+          })
+      })
+      return {
+        ...postListData,
+        results: newPostList
+      }
+    }))
   }
 
   getAllDonationPostList(): Observable<DonationPost[]> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.get<DonationPost[]>(`${environment.apiUrl}/donation/all/`, { headers: headers }).pipe(map((postList: DonationPost[]) => {
+    return this._httpClient.get<DonationPostResponse[]>(`${environment.apiUrl}/donation/all/`, { headers: headers }).pipe(map((postList: DonationPostResponse[]) => {
       let newPostList: DonationPost[] = []
       postList.forEach(post => {
         let endDate = new Date(post.end_date)
         let toDay = new Date()
         let diff = endDate.getTime() - toDay.getTime()
-        if(diff > -1)
+        if (diff > -1)
           newPostList.push({
             ...post,
+            progress: this.receivedAmountPercentage(post.amount, post.received_amount)
           })
       })
       return newPostList
