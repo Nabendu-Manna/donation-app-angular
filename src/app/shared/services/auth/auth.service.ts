@@ -96,7 +96,12 @@ export class AuthService {
     let queryParams = new HttpParams({});
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this._httpClient.post<LoginResponse>(`${environment.apiUrl}/account/register/`, payload, { params: queryParams, headers: headers }).pipe(tap(registerResponse => {
-      this._localStorage.setItem("auth_details", registerResponse).subscribe(() => { })
+      if (registerResponse.user_id) {
+        this._localStorage.setItem("auth_details", registerResponse).subscribe(() => { })
+        this.loginStatusSubject.next(true)
+      } else {
+        this.loginStatusSubject.next(false)
+      }
     }));
   }
 
