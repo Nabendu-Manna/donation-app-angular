@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+import { DonateDialogComponent } from 'src/app/shared/dialogs/donate-dialog/donate-dialog.component';
 import { DonationPost } from 'src/app/shared/models/donation.model';
 import { PostService } from 'src/app/shared/services/post/post.service';
 
@@ -32,7 +34,8 @@ export class DonationMapComponent implements OnInit {
   markerPositionList: { id: number, markerPosition: google.maps.LatLngLiteral }[] = [];
 
   constructor(
-    private _postService: PostService
+    private _postService: PostService,
+    public _dialog: MatDialog
   ) {
     this.donationList = [];
   }
@@ -78,5 +81,9 @@ export class DonationMapComponent implements OnInit {
   }
   
   // ========== End Map Event Handler ==========//
+
+  onClickDonate(selectedDonation: DonationPost): void {
+    this._dialog.open(DonateDialogComponent, { data: { id: selectedDonation.id, amount: selectedDonation.amount } });
+  }
 
 }
