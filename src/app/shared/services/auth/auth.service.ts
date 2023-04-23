@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  userDetails!: LoginResponse;
+  userDetails?: LoginResponse;
   private loginStatusSubject = new BehaviorSubject(false)
   public loginStatus = this.loginStatusSubject.asObservable()
   private adminStatusSubject = new BehaviorSubject(false)
@@ -23,16 +23,17 @@ export class AuthService {
   ) {
     this._localStorage.getItem("auth_details").subscribe((authDetails: any) => {
       if (authDetails && authDetails.user_id) {
-        this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/admin/valid`).subscribe(data => {
+        this.userDetails = authDetails
+        let queryParams = new HttpParams({})
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${authDetails.token}` })
+        this._httpClient.get<{ valid: boolean }>(`${environment.apiUrl}/account/admin/valid`,  { params: queryParams, headers: headers }).subscribe(data => {
           this.adminStatusSubject.next(data.valid)
         })
-        this.userDetails = authDetails
         this.loginStatusSubject.next(true)
       } else {
         this.loginStatusSubject.next(false)
       }
     })
-
   }
 
   isUserValid(): Observable<boolean> {
@@ -47,8 +48,8 @@ export class AuthService {
       this.loginStatusSubject.next(false)
       return of(false)
     }
-
   }
+
   isAdminValid(): Observable<boolean> {
     if (this.userDetails && this.userDetails.token) {
       let queryParams = new HttpParams({})
@@ -59,6 +60,7 @@ export class AuthService {
       }))
     } else {
       this.loginStatusSubject.next(false)
+      this.adminStatusSubject.next(false)
       return of(false)
       
     }
@@ -72,7 +74,11 @@ export class AuthService {
       if (loginResponse.user_id) {
         this._localStorage.setItem("auth_details", loginResponse).subscribe(() => { })
         this.loginStatusSubject.next(true)
+        this.isAdminValid().subscribe(() => {
+
+        })
       } else {
+        this._localStorage.removeItem("auth_details").subscribe(() => {})
         this.loginStatusSubject.next(false)
       }
     }));
@@ -80,12 +86,15 @@ export class AuthService {
 
   logout(): Observable<any> {
     this.loginStatusSubject.next(false)
+    this.adminStatusSubject.next(false)
     this._localStorage.removeItem("auth_details").subscribe(() => {})
     if (this.userDetails && this.userDetails.token) {
       let queryParams = new HttpParams({})
       let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `Token ${this.userDetails.token}` })
+      this.userDetails = undefined
       return this._httpClient.post<any>(`${environment.apiUrl}/account/logout/`, {}, { params: queryParams, headers: headers })
     } else {
+      this.userDetails = undefined
       return of({
         error: "Invalid Data"
       })
@@ -100,6 +109,7 @@ export class AuthService {
         this._localStorage.setItem("auth_details", registerResponse).subscribe(() => { })
         this.loginStatusSubject.next(true)
       } else {
+        this._localStorage.removeItem("auth_details").subscribe(() => {})
         this.loginStatusSubject.next(false)
       }
     }));

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorage } from '@ngx-pwa/local-storage';
 import { PostService } from 'src/app/shared/services/post/post.service';
 
 @Component({
@@ -8,11 +9,12 @@ import { PostService } from 'src/app/shared/services/post/post.service';
   templateUrl: './new-donation.component.html',
   styleUrls: ['./new-donation.component.scss']
 })
-export class NewDonationComponent {
+export class NewDonationComponent implements OnInit {
   donationForm: FormGroup
   constructor(
     private _formBuilder: FormBuilder,
     private _postService: PostService,
+    private _localStorage: LocalStorage,
     private router: Router
   ) {
     this.donationForm = this._formBuilder.group({
@@ -23,6 +25,14 @@ export class NewDonationComponent {
       address: [null, [Validators.required]],
       end_date: [null, [Validators.required]]
     });
+  }
+  ngOnInit(): void {
+    this._localStorage.getItem("auth_details").subscribe((authDetails: any) => {
+      if(authDetails && authDetails.token){
+      } else {
+        this.router.navigate(['donation/list']);
+      }
+    })
   }
 
   onDonationFormSubmit() {

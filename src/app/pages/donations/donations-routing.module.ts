@@ -11,8 +11,7 @@ const routes: Routes = [
     component: DonationListComponent 
   }, { 
     path: 'new', 
-    component: NewDonationComponent ,
-    canActivate: [IsLoginGuard]
+    component: NewDonationComponent
   }, { 
     path: 'map', 
     component: DonationMapComponent 

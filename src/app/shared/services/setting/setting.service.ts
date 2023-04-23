@@ -39,7 +39,7 @@ export class SettingService {
       formData.append("image", imageFile, imageFile.name);
 
       let headers = new HttpHeaders({ 'Authorization': `Token ${this.userDetails.token}` });
-      return this._httpClient.patch<any>(`${environment.apiUrl}/setting/home-page/`, formData, { params: queryParams, headers: headers });
+      return this._httpClient.patch<any>(`${environment.apiUrl}/setting/home-page/update/`, formData, { params: queryParams, headers: headers });
     } else {
       return of({
         error: "Invalid Data"

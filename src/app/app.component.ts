@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnlineStatusService, OnlineStatusType } from "ngx-online-status";
 import { AuthService } from './shared/services/auth/auth.service';
