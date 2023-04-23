@@ -108,6 +108,6 @@ export class AuthService {
   forgotPassword(payload: ForgotPasswordPayload): Observable<any> {
     let queryParams = new HttpParams({});
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.post<any>(`${environment.apiUrl}/forgot-password/`, payload, { params: queryParams, headers: headers });
+    return this._httpClient.post<any>(`${environment.apiUrl}/account/forgot-password/`, payload, { params: queryParams, headers: headers });
   }
 }
