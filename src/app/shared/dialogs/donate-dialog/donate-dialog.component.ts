@@ -32,6 +32,8 @@ export class DonateDialogComponent implements OnInit {
     onDonationFormSubmit(): void {
         if(this.donateForm.valid && this.donateForm.value.amount <= this.data.amount - this.data.received_amount) {
             this._postService.donate(this.donateForm.value).subscribe((data) => {
+                // console.log(data.url);
+                window.location.href = data.url;
                 this.data.received_amount = this.data.received_amount + parseInt(this.donateForm.value.amount)
                 this.dialogRef.close(this.data)
             })
